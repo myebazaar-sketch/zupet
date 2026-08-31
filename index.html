@@ -243,6 +243,138 @@
         </div>
       </div>
 
+      <!-- ============================================================
+           DECORATIVE AQUARIUM SCENE
+           Pure inline SVG/CSS — no image files required. Floating fish,
+           shrimp, seaweed and bubbles sit behind the centered copy.
+           Colors are theme-driven via CSS custom properties.
+           ============================================================ -->
+      <div class="hero-scene" aria-hidden="true">
+
+        <!-- Rising bubbles -->
+        <span class="scene-bubble" style="--x: 16%; --s: 16px; --dur: 8s;  --delay: 0s;"></span>
+        <span class="scene-bubble" style="--x: 84%; --s: 12px; --dur: 10s; --delay: 2s;"></span>
+        <span class="scene-bubble" style="--x: 48%; --s: 9px;  --dur: 7s;  --delay: 4s;"></span>
+        <span class="scene-bubble" style="--x: 8%;  --s: 7px;  --dur: 9s;  --delay: 6s;"></span>
+        <span class="scene-bubble" style="--x: 92%; --s: 10px; --dur: 11s; --delay: 1.5s;"></span>
+        <span class="scene-bubble" style="--x: 32%; --s: 6px;  --dur: 8.5s;--delay: 3s;"></span>
+
+        <!-- Gold tropical fish (upper left) -->
+        <div class="hero-fish hero-fish--gold" style="--top: 22%; --left: 6%; --dur: 11s; --delay: -2s;">
+          <svg viewBox="0 0 120 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 40 C20 28 8 18 0 22 C9 32 9 52 0 62 C8 66 20 52 24 40 Z" fill="var(--accent)"/>
+            <path d="M96 42 C96 22 80 10 56 10 C32 10 18 22 18 42 C18 62 32 74 56 74 C80 74 96 62 96 42 Z" fill="var(--body)"/>
+            <path d="M50 10 C46 -2 64 -2 62 10 Z" fill="var(--accent)"/>
+            <path d="M64 11 C68 2 80 4 78 14 Z" fill="var(--accent)"/>
+            <path d="M52 74 C48 84 64 84 66 74 Z" fill="var(--accent)"/>
+            <path d="M54 48 C48 62 34 64 30 56 C44 56 48 54 54 48 Z" fill="var(--accent)"/>
+            <path d="M30 28 C25 38 25 46 30 56" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M42 12 C38 28 38 56 42 72" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="86" cy="37" r="5" fill="#1c2b2a"/>
+            <circle cx="87.6" cy="35.4" r="1.8" fill="#ffffff"/>
+          </svg>
+        </div>
+
+        <!-- Cream tropical fish (lower right, mirrored) -->
+        <div class="hero-fish hero-fish--cream" style="--top: 66%; --right: 5%; --dur: 13s; --delay: -5s;">
+          <svg viewBox="0 0 120 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 40 C20 28 8 18 0 22 C9 32 9 52 0 62 C8 66 20 52 24 40 Z" fill="var(--accent)"/>
+            <path d="M96 42 C96 22 80 10 56 10 C32 10 18 22 18 42 C18 62 32 74 56 74 C80 74 96 62 96 42 Z" fill="var(--body)"/>
+            <path d="M50 10 C46 -2 64 -2 62 10 Z" fill="var(--accent)"/>
+            <path d="M64 11 C68 2 80 4 78 14 Z" fill="var(--accent)"/>
+            <path d="M52 74 C48 84 64 84 66 74 Z" fill="var(--accent)"/>
+            <path d="M54 48 C48 62 34 64 30 56 C44 56 48 54 54 48 Z" fill="var(--accent)"/>
+            <path d="M30 28 C25 38 25 46 30 56" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M38 12 C34 30 34 54 38 72" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M50 11 C46 32 46 52 50 73" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="86" cy="37" r="5" fill="#1c2b2a"/>
+            <circle cx="87.6" cy="35.4" r="1.8" fill="#ffffff"/>
+          </svg>
+        </div>
+
+        <!-- Maroon tropical fish (upper right) -->
+        <div class="hero-fish hero-fish--maroon" style="--top: 13%; --right: 15%; --dur: 9s; --delay: -1s;">
+          <svg viewBox="0 0 120 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 40 C20 28 8 18 0 22 C9 32 9 52 0 62 C8 66 20 52 24 40 Z" fill="var(--accent)"/>
+            <path d="M96 42 C96 22 80 10 56 10 C32 10 18 22 18 42 C18 62 32 74 56 74 C80 74 96 62 96 42 Z" fill="var(--body)"/>
+            <path d="M50 10 C46 -2 64 -2 62 10 Z" fill="var(--accent)"/>
+            <path d="M64 11 C68 2 80 4 78 14 Z" fill="var(--accent)"/>
+            <path d="M52 74 C48 84 64 84 66 74 Z" fill="var(--accent)"/>
+            <path d="M54 48 C48 62 34 64 30 56 C44 56 48 54 54 48 Z" fill="var(--accent)"/>
+            <path d="M30 28 C25 38 25 46 30 56" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="86" cy="37" r="5" fill="#1c2b2a"/>
+            <circle cx="87.6" cy="35.4" r="1.8" fill="#ffffff"/>
+          </svg>
+        </div>
+
+        <!-- Maroon shrimp (lower left) -->
+        <div class="hero-shrimp hero-shrimp--maroon" style="--bottom: 12%; --left: 10%; --dur: 8s; --delay: -1.5s;">
+          <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M138 26 C 152 14 158 4 162 -2" stroke="var(--band)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M140 32 C 152 26 158 18 162 14" stroke="var(--band)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M138 30 C 130 18 116 16 108 22 C 118 32 130 36 138 32 Z" fill="var(--body)"/>
+            <circle cx="123" cy="22" r="3" fill="#1c2b2a"/>
+            <ellipse cx="104" cy="32" rx="17" ry="11" transform="rotate(-10 104 32)" fill="var(--body)"/>
+            <ellipse cx="88" cy="39" rx="16" ry="11" transform="rotate(-16 88 39)" fill="var(--body)"/>
+            <ellipse cx="72" cy="48" rx="15" ry="11" transform="rotate(-22 72 48)" fill="var(--body)"/>
+            <ellipse cx="56" cy="59" rx="14" ry="11" transform="rotate(-30 56 59)" fill="var(--body)"/>
+            <ellipse cx="42" cy="72" rx="13" ry="11" transform="rotate(-38 42 72)" fill="var(--body)"/>
+            <path d="M78 34 C 70 44 66 52 66 56" stroke="var(--band)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M42 72 C 26 72 12 66 6 70 C 18 82 34 86 44 80 Z" fill="var(--band)"/>
+            <path d="M96 44 C 92 54 90 58 88 62" stroke="var(--body)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M80 53 C 76 61 74 66 72 70" stroke="var(--body)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M64 65 C 60 72 58 76 56 80" stroke="var(--body)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M112 42 C 108 50 106 54 104 58" stroke="var(--body)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Second shrimp (lower right, mirrored) -->
+        <div class="hero-shrimp hero-shrimp--maroon" style="--bottom: 17%; --right: 8%; --dur: 9s; --delay: -3.5s; --flip: -1;">
+          <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M138 26 C 152 14 158 4 162 -2" stroke="var(--band)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M140 32 C 152 26 158 18 162 14" stroke="var(--band)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M138 30 C 130 18 116 16 108 22 C 118 32 130 36 138 32 Z" fill="var(--body)"/>
+            <circle cx="123" cy="22" r="3" fill="#1c2b2a"/>
+            <ellipse cx="104" cy="32" rx="17" ry="11" transform="rotate(-10 104 32)" fill="var(--body)"/>
+            <ellipse cx="88" cy="39" rx="16" ry="11" transform="rotate(-16 88 39)" fill="var(--body)"/>
+            <ellipse cx="72" cy="48" rx="15" ry="11" transform="rotate(-22 72 48)" fill="var(--body)"/>
+            <ellipse cx="56" cy="59" rx="14" ry="11" transform="rotate(-30 56 59)" fill="var(--body)"/>
+            <ellipse cx="42" cy="72" rx="13" ry="11" transform="rotate(-38 42 72)" fill="var(--body)"/>
+            <path d="M78 34 C 70 44 66 52 66 56" stroke="var(--band)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M42 72 C 26 72 12 66 6 70 C 18 82 34 86 44 80 Z" fill="var(--band)"/>
+            <path d="M96 44 C 92 54 90 58 88 62" stroke="var(--body)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M80 53 C 76 61 74 66 72 70" stroke="var(--body)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M64 65 C 60 72 58 76 56 80" stroke="var(--body)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M112 42 C 108 50 106 54 104 58" stroke="var(--body)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Seaweed (forest green, matching Meal Worm label) -->
+        <div class="hero-plant" style="--left: 3%; --bottom: 12%; --dur: 6s; --delay: 0s;">
+          <svg viewBox="0 0 70 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 150 C 14 120 30 96 18 62 C 10 40 24 18 18 0" stroke="var(--stem)" stroke-width="9" stroke-linecap="round"/>
+            <path d="M45 150 C 52 122 38 100 48 70 C 54 50 42 30 46 6" stroke="var(--stem)" stroke-width="7" stroke-linecap="round"/>
+            <path d="M58 150 C 63 126 50 104 58 80 C 63 62 56 44 58 20" stroke="var(--stem)" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="hero-plant hero-plant--2" style="--right: 4%; --bottom: 14%; --dur: 7s; --delay: -2s;">
+          <svg viewBox="0 0 70 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 150 C 14 120 30 96 18 62 C 10 40 24 18 18 0" stroke="var(--stem)" stroke-width="9" stroke-linecap="round"/>
+            <path d="M45 150 C 52 122 38 100 48 70 C 54 50 42 30 46 6" stroke="var(--stem)" stroke-width="7" stroke-linecap="round"/>
+            <path d="M58 150 C 63 126 50 104 58 80 C 63 62 56 44 58 20" stroke="var(--stem)" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <!-- Rocks for grounding -->
+        <svg class="hero-rock" style="--left: 14%; --bottom: 0;" viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 40 C 4 26 16 14 30 12 C 46 10 60 14 66 22 C 76 26 84 32 82 40 Z" fill="#0a3d38"/>
+        </svg>
+        <svg class="hero-rock hero-rock--2" style="--right: 16%; --bottom: 0;" viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 40 C 4 26 16 14 30 12 C 46 10 60 14 66 22 C 76 26 84 32 82 40 Z" fill="#0a3d38"/>
+        </svg>
+      </div>
+
       <!-- Decorative wave divider -->
       <svg class="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <path d="M0,64 C240,120 480,8 720,48 C960,88 1200,16 1440,72 L1440,120 L0,120 Z" fill="#f7fafb"/>
@@ -280,6 +412,11 @@
          inside the <div class="read-more-content"> block.
          To add a real photo, replace the <div class="product-img"> with:
            <img src="images/your-photo.jpg" alt="Zupet Premium Flakes product photo">
+
+         BUY BUTTONS:
+         Every card ends with a "Buy it now" button. To make it live, replace
+         each href placeholder with your product's real Amazon URL, e.g.
+           https://www.amazon.com/dp/B0XXXXXXXX?tag=your-associate-tag
          ============================================================ -->
     <section class="section products" id="products">
       <div class="container">
@@ -345,6 +482,11 @@
                   </div>
                 </div>
               </details>
+              <a class="buy-btn" href="https://www.amazon.com/dp/REPLACE_ASIN_PREMIUM_FLAKES?tag=REPLACE_TAG" target="_blank" rel="noopener sponsored">
+                <svg class="buy-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="buy-btn-text">Buy it now</span>
+                <svg class="buy-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
             </div>
           </article>
 
@@ -399,6 +541,11 @@
                   </div>
                 </div>
               </details>
+              <a class="buy-btn" href="https://www.amazon.com/dp/REPLACE_ASIN_COLOR_BOOST?tag=REPLACE_TAG" target="_blank" rel="noopener sponsored">
+                <svg class="buy-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="buy-btn-text">Buy it now</span>
+                <svg class="buy-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
             </div>
           </article>
 
@@ -453,6 +600,11 @@
                   </div>
                 </div>
               </details>
+              <a class="buy-btn" href="https://www.amazon.com/dp/REPLACE_ASIN_SPIRULINA_WAFERS?tag=REPLACE_TAG" target="_blank" rel="noopener sponsored">
+                <svg class="buy-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="buy-btn-text">Buy it now</span>
+                <svg class="buy-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
             </div>
           </article>
 
@@ -507,6 +659,11 @@
                   </div>
                 </div>
               </details>
+              <a class="buy-btn" href="https://www.amazon.com/dp/REPLACE_ASIN_NANO_GRANULES?tag=REPLACE_TAG" target="_blank" rel="noopener sponsored">
+                <svg class="buy-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="buy-btn-text">Buy it now</span>
+                <svg class="buy-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
             </div>
           </article>
 
@@ -556,6 +713,11 @@
                       <li>Offer half a stick per 10–15 shrimp every other day</li>
                       <li>Observe consumption and adjust portions to avoid leftovers</li>
                       <li>Remove uneaten pieces after 24 hours</li>
+              <a class="buy-btn" href="https://www.amazon.com/dp/REPLACE_ASIN_SHRIMP_DELIGHT?tag=REPLACE_TAG" target="_blank" rel="noopener sponsored">
+                <svg class="buy-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="buy-btn-text">Buy it now</span>
+                <svg class="buy-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
                       <li>Provide a varied diet with occasional blanched vegetables</li>
                     </ul>
                   </div>
@@ -610,6 +772,11 @@
                       <li>Feed 2–3 pellets twice daily; soak pellets for 5 minutes first if desired</li>
                       <li>Skip one feeding day per week to aid digestion</li>
                       <li>Remove any uneaten pellets after 5 minutes</li>
+              <a class="buy-btn" href="https://www.amazon.com/dp/REPLACE_ASIN_BETTA_BITES?tag=REPLACE_TAG" target="_blank" rel="noopener sponsored">
+                <svg class="buy-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="buy-btn-text">Buy it now</span>
+                <svg class="buy-btn-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
                       <li>Store sealed in a cool, dry place out of direct sunlight</li>
                     </ul>
                   </div>
