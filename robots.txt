@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Private / behind-the-scenes pages
+Disallow: /editor.html
+Disallow: /articles/index.json
+
+Sitemap: https://zupet.in/sitemap.xml

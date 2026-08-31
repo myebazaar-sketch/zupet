@@ -1,0 +1,118 @@
+# ==========================================================================
+# Zupet — zupet.in
+# .htaccess (Apache 2.4)
+# --------------------------------------------------------------------------
+# For the static site: index.html, blog.html, articles/*.html, img/, etc.
+# Every rule is wrapped in <IfModule> so a missing module never 500s the
+# site — it just skips that feature. Deploy to the web root of your host.
+# ==========================================================================
+
+# --------------------------------------------------------------------------
+# 1. HTTPS + CANONICAL HOST (force https://zupet.in, drop "www")
+# --------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Redirect www.zupet.in -> zupet.in (and any other subdomain-prefixed host)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 2. SECURITY
+# --------------------------------------------------------------------------
+# No directory listing
+Options -Indexes
+
+# Deny server/config/backup files
+<IfModule mod_authz_core.c>
+  <FilesMatch "^(\.htaccess|\.htpasswd|\.env|\.gitconfig|.*\.(md|log|sql|bak|sh|ini|conf|orig)$)">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+# Deny access to dotfiles, .git internals and other hidden paths
+<IfModule mod_rewrite.c>
+  RewriteRule (^|/)\.(?!well-known) - [F]
+  RewriteRule \.(git|svn|hg)/ - [F]
+</IfModule>
+
+# Security response headers
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 3. COMPRESSION (mod_deflate)
+# --------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 4. BROWSER CACHING (mod_expires)
+#    Static assets get a long cache; HTML always served fresh.
+# --------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType application/json        "access plus 1 hour"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 5. MIME TYPES (mod_mime)
+# --------------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType image/svg+xml        .svg
+  AddType image/webp           .webp
+  AddType image/x-icon         .ico
+  AddType image/vnd.microsoft.icon .ico
+  AddType application/json     .json
+  AddType font/woff2           .woff2
+  AddType font/woff            .woff
+  AddType application/xml      .xml
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 6. CUSTOM ERROR PAGES
+# --------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+
+# --------------------------------------------------------------------------
+# 7. CLEAN URLs — serve articles without the .html extension
+#    https://zupet.in/articles/<slug>  ->  articles/<slug>.html
+#    Old .html URLs 301-redirect to the clean URL.
+# --------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 301 redirect old .html article URLs to clean URLs
+  RewriteRule ^articles/([a-z0-9-]+)\.html$ /articles/$1 [L,R=301]
+
+  # Internally serve clean URLs from their .html files
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^articles/([a-z0-9-]+)/?$ articles/$1.html [L]
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 8. DEFAULT CHARSET
+# --------------------------------------------------------------------------
+AddDefaultCharset UTF-8

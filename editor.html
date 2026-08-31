@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zupet Blog Editor</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d4f4a'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='36' font-weight='700' fill='white' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body class="page-shell">
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <nav class="nav container" aria-label="Editor navigation">
+      <a href="blog.html" class="nav-logo" aria-label="Back to blog">
+        <span class="nav-logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-5 3-7 8-7s8 2 8 7-3 7-8 7-8-2-8-7z"/><path d="M14 12h4M18 8l3 4-3 4"/><circle cx="8.5" cy="10.5" r="0.8" fill="currentColor"/></svg>
+        </span>
+        <span class="nav-logo-text">Zupet&nbsp;Editor</span>
+      </a>
+      <a class="btn btn-ghost" style="padding:.55rem 1.1rem" href="blog.html">&larr; View blog</a>
+    </nav>
+  </header>
+
+  <!-- ================= LOCK SCREEN (hidden from visitors) ================= -->
+  <div id="lock-screen" class="section" hidden>
+    <div class="container" style="max-width:480px;text-align:center">
+      <h1 class="section-title">Zupet Blog Editor</h1>
+      <p class="section-lead">This is the private editor used to write and publish articles. It is intentionally not linked from the public site.</p>
+      <button id="unlock-btn" class="btn btn-primary" type="button">Open editor</button>
+      <p style="margin-top:1rem;font-size:.85rem;color:var(--color-text-muted)">Tip: you can also open it with <code>editor.html?admin=1</code>.</p>
+    </div>
+  </div>
+
+  <!-- ================= EDITOR ================= -->
+  <div id="editor-root" class="section editor-page" hidden>
+    <div class="container">
+
+      <div class="editor-head">
+        <p class="eyebrow">Editor</p>
+        <h1>Write a new article</h1>
+        <p>Format with the toolbar, add images (saved to <code>img/blog/</code>), links and embeds, then fill the SEO box and hit <strong>Publish</strong> — it creates a separate file in <code>articles/</code>.</p>
+      </div>
+
+      <div class="editor-layout">
+
+        <!-- ============ EDITOR COLUMN ============ -->
+        <div>
+          <div class="panel" style="padding:0">
+            <div class="editor-toolbar" role="toolbar" aria-label="Formatting tools">
+              <button type="button" data-cmd="bold" title="Bold"><b>B</b></button>
+              <button type="button" data-cmd="italic" title="Italic"><i>I</i></button>
+              <button type="button" data-cmd="underline" title="Underline"><u>U</u></button>
+              <button type="button" data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+              <span class="sep"></span>
+              <button type="button" data-cmd="formatBlock" data-value="h2" title="Heading 2">H2</button>
+              <button type="button" data-cmd="formatBlock" data-value="h3" title="Heading 3">H3</button>
+              <button type="button" data-cmd="formatBlock" data-value="p" title="Paragraph">¶</button>
+              <button type="button" data-cmd="formatBlock" data-value="blockquote" title="Quote">❝</button>
+              <span class="sep"></span>
+              <button type="button" data-cmd="insertUnorderedList" title="Bullet list">•≡</button>
+              <button type="button" data-cmd="insertOrderedList" title="Numbered list">1≡</button>
+              <button type="button" data-cmd="insertHorizontalRule" title="Divider">—</button>
+              <span class="sep"></span>
+              <button type="button" id="btn-link" title="Add / edit link">🔗</button>
+              <button type="button" id="btn-unlink" title="Remove link">🔗̶</button>
+              <button type="button" id="btn-image" title="Insert image (save to img/blog)">🖼</button>
+              <button type="button" id="btn-iframe" title="Insert iframe / embed (e.g. YouTube)">▶</button>
+              <button type="button" data-cmd="formatBlock" data-value="pre" title="Code block">&lt;/&gt;</button>
+              <span class="sep"></span>
+              <button type="button" data-cmd="removeFormat" title="Clear formatting">⌫</button>
+            </div>
+            <div id="editor-area" class="editor-area" contenteditable="true" data-placeholder="Start writing your article… (paste or insert images, links and video embeds)"></div>
+          </div>
+
+          <div class="publish-bar">
+            <div>
+              <strong>Ready to publish?</strong>
+              <p>Creates <code>articles/&lt;slug&gt;.html</code> + updates <code>articles/index.json</code>.</p>
+            </div>
+            <button id="btn-publish" class="btn btn-primary" type="button">🚀 Publish article</button>
+          </div>
+        </div>
+
+        <!-- ============ SEO / META COLUMN ============ -->
+        <aside class="seo-panel panel">
+          <h2>SEO &amp; metadata</h2>
+          <p class="panel-desc">Fills the generated article&rsquo;s meta tags, Open Graph and JSON-LD.</p>
+
+          <div class="form-field">
+            <label for="field-title">Article title</label>
+            <input type="text" id="field-title" placeholder="e.g. How to feed tropical fish" />
+          </div>
+
+          <div class="form-field">
+            <label for="field-slug">Slug (URL file name)</label>
+            <input type="text" id="field-slug" placeholder="how-to-feed-tropical-fish" />
+            <p class="hint">Auto-generated from the title. Lowercase, no spaces. Saves as <code>articles/&lt;slug&gt;.html</code>.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="field-desc">Meta description</label>
+            <textarea id="field-desc" rows="3" maxlength="165" placeholder="One or two sentences for search results…"></textarea>
+            <div class="seo-counter"><span id="desc-count">0</span> / 165</div>
+          </div>
+
+          <div class="form-field">
+            <label for="field-keywords">Keywords (comma separated)</label>
+            <input type="text" id="field-keywords" placeholder="aquarium, fish food, care guide" />
+          </div>
+
+          <div class="form-field">
+            <label for="field-author">Author</label>
+            <input type="text" id="field-author" value="Zupet Team" />
+          </div>
+
+          <div class="form-field">
+            <label for="field-date">Publish date</label>
+            <input type="date" id="field-date" />
+          </div>
+
+          <div class="form-field">
+            <label for="field-tags">Tags (comma separated)</label>
+            <input type="text" id="field-tags" placeholder="Guides, Species" />
+          </div>
+
+          <div class="form-field">
+            <label for="field-featured">Featured image <span class="hint">(saved to <code>img/blog/</code>)</span></label>
+            <input type="file" id="field-featured" accept="image/*" />
+            <input type="hidden" id="field-featured-path" />
+            <div class="seo-featured-preview" id="featured-preview">No featured image</div>
+          </div>
+
+          <div class="form-field">
+            <button id="btn-draft-save" class="btn btn-ghost-light" type="button" style="width:100%">Save draft (browser)</button>
+            <button id="btn-draft-load" class="btn btn-ghost-light" type="button" style="width:100%;margin-top:.5rem">Load last draft</button>
+            <button id="btn-sitemap" class="btn btn-ghost-light" type="button" style="width:100%;margin-top:.5rem">Generate sitemap.xml</button>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="file-image" accept="image/*" hidden />
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ================= config ================= */
+      var BASE_URL = 'https://zupet.in';          // change to your real domain
+      var MANIFEST = 'articles/index.json';
+      var IMG_DIR  = 'img/blog/';
+
+      /* ================= access gate (hidden from visitors) ================= */
+      var lockScreen = document.getElementById('lock-screen');
+      var editorRoot = document.getElementById('editor-root');
+      var authed = /[?&]admin=1/.test(location.search);
+      try { if (sessionStorage.getItem('zupet-editor')) authed = true; } catch (e) {}
+      function reveal() {
+        try { sessionStorage.setItem('zupet-editor', '1'); } catch (e) {}
+        lockScreen.hidden = true;
+        editorRoot.hidden = false;
+        if (!document.getElementById('field-date').value) {
+          document.getElementById('field-date').value = new Date().toISOString().slice(0, 10);
+        }
+      }
+      document.getElementById('unlock-btn').addEventListener('click', reveal);
+      if (authed) reveal(); else lockScreen.hidden = false;
+
+      var $ = function (id) { return document.getElementById(id); };
+
+      /* ================= helpers ================= */
+      function slugify(str) {
+        return String(str || '')
+          .toLowerCase()
+          .replace(/[’'"]/g, '')
+          .replace(/&/g, ' and ')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+          .slice(0, 60);
+      }
+      function esc(s) {
+        return String(s == null ? '' : s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+      function showToast(msg, isError) {
+        var t = $('toast');
+        t.textContent = msg;
+        t.className = 'toast show' + (isError ? ' error' : '');
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(function () { t.className = 'toast'; }, 6000);
+      }
+      function download(filename, text, mime) {
+        var blob = new Blob([text], { type: mime || 'text/plain;charset=utf-8' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      }
+
+      /* ================= editor commands ================= */
+      var area = $('editor-area');
+
+      document.querySelectorAll('.editor-toolbar button[data-cmd]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          area.focus();
+          var cmd = btn.getAttribute('data-cmd');
+          var val = btn.getAttribute('data-value') || null;
+          document.execCommand(cmd, false, val);
+        });
+      });
+
+      $('btn-link').addEventListener('click', function () {
+        var url = prompt('Link URL (https://…):');
+        if (!url) return;
+        area.focus();
+        document.execCommand('createLink', false, url.trim());
+      });
+      $('btn-unlink').addEventListener('click', function () {
+        area.focus();
+        document.execCommand('unlink');
+      });
+
+      $('btn-iframe').addEventListener('click', function () {
+        var src = prompt('Embed / iframe URL (e.g. a YouTube video page or share link):');
+        if (!src) return;
+        src = src.trim();
+        var embed = src;
+        var yt = src.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]+)/);
+        if (yt) embed = 'https://www.youtube.com/embed/' + yt[1];
+        area.focus();
+        document.execCommand('insertHTML', false,
+          '<iframe src="' + esc(embed) + '" title="Embedded content" loading="lazy" allowfullscreen></iframe>');
+      });
+
+      /* ================= image handling (saves to img/blog/) ================= */
+      async function handleImageFile(file, cb) {
+        if (!file) return;
+        var name = file.name.toLowerCase().replace(/[^a-z0-9.\-_]/g, '-').replace(/-+/g, '-');
+        var path = IMG_DIR + name;
+        var dataURL = await readAsDataURL(file);
+
+        // Prefer File System Access API (Chrome/Edge, secure context) to write into img/blog/
+        if (window.showDirectoryPicker) {
+          try {
+            var root = await showDirectoryPicker({ mode: 'readwrite' });
+            var imgs = await root.getDirectoryHandle('img', { create: true });
+            var blog = await imgs.getDirectoryHandle('blog', { create: true });
+            var fh = await blog.getFileHandle(name, { create: true });
+            var w = await fh.createWritable();
+            await w.write(dataURLToBlob(dataURL));
+            await w.close();
+            cb(path, dataURL);
+            showToast('Image saved to ' + path);
+            return;
+          } catch (e) {
+            if (e && e.name === 'AbortError') { showToast('Image save cancelled.', true); return; }
+            // otherwise fall through to the download fallback
+          }
+        }
+        fallbackImage(path, dataURL, name);
+      }
+
+      function readAsDataURL(file) {
+        return new Promise(function (resolve, reject) {
+          var r = new FileReader();
+          r.onload = function () { resolve(r.result); };
+          r.onerror = reject;
+          r.readAsDataURL(file);
+        });
+      }
+
+      function fallbackImage(path, dataURL, name) {
+        var a = document.createElement('a');
+        a.href = dataURL;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { a.remove(); }, 1000);
+        showToast('Image downloaded as "' + name + '" — this browser can\u2019t write folders directly, so save it into the img/blog/ folder.');
+      }
+
+      function dataURLToBlob(dataURL) {
+        var parts = dataURL.split(',');
+        var mime = (parts[0].match(/:(.*?);/) || [])[1] || 'application/octet-stream';
+        var bytes = atob(parts[1]);
+        var arr = new Uint8Array(bytes.length);
+        for (var i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+        return new Blob([arr], { type: mime });
+      }
+
+      $('btn-image').addEventListener('click', function () { $('file-image').click(); });
+      $('file-image').addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        if (!file) return;
+        handleImageFile(file, function (path, dataURL) {
+          area.focus();
+          document.execCommand('insertHTML', false, '<img src="' + esc(path) + '" alt="Uploaded image" />');
+          showToast('Inserted ' + path);
+        });
+        e.target.value = '';
+      });
+
+      /* featured image */
+      $('field-featured').addEventListener('change', function (e) {
+        var file = e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          var preview = $('featured-preview');
+          preview.innerHTML = '';
+          var img = document.createElement('img');
+          img.src = reader.result;
+          preview.appendChild(img);
+          $('field-featured-path').value = 'pending';
+          var name = file.name.toLowerCase().replace(/[^a-z0-9.\-_]/g, '-').replace(/-+/g, '-');
+          handleImageFile(file, function (path) {
+            $('field-featured-path').value = path;
+            var img2 = document.createElement('img');
+            img2.src = path;
+            preview.innerHTML = '';
+            preview.appendChild(img2);
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+
+      /* ================= meta char counter ================= */
+      $('field-desc').addEventListener('input', function () {
+        $('desc-count').textContent = this.value.length;
+      });
+      $('field-title').addEventListener('input', function () {
+        var slug = $('field-slug');
+        if (!slug.value || slug.dataset.auto !== '0') slug.value = slugify(this.value);
+      });
+      $('field-slug').addEventListener('focus', function () { this.dataset.auto = '0'; });
+
+      /* ================= drafts ================= */
+      function collectDraft() {
+        return {
+          body: area.innerHTML,
+          title: $('field-title').value,
+          slug: $('field-slug').value,
+          desc: $('field-desc').value,
+          keywords: $('field-keywords').value,
+          author: $('field-author').value,
+          date: $('field-date').value,
+          tags: $('field-tags').value,
+          featured: $('field-featured-path').value
+        };
+      }
+      $('btn-draft-save').addEventListener('click', function () {
+        try { localStorage.setItem('zupet-draft', JSON.stringify(collectDraft())); showToast('Draft saved to this browser.'); }
+        catch (e) { showToast('Could not save draft.', true); }
+      });
+      $('btn-draft-load').addEventListener('click', function () {
+        try {
+          var d = JSON.parse(localStorage.getItem('zupet-draft'));
+          if (!d) return showToast('No draft found.', true);
+          area.innerHTML = d.body || '';
+          $('field-title').value = d.title || '';
+          $('field-slug').value = d.slug || '';
+          $('field-desc').value = d.desc || '';
+          $('field-keywords').value = d.keywords || '';
+          $('field-author').value = d.author || '';
+          $('field-date').value = d.date || '';
+          $('field-tags').value = d.tags || '';
+          showToast('Draft loaded.');
+        } catch (e) { showToast('Could not load draft.', true); }
+      });
+
+      /* ================= sitemap button ================= */
+      $('btn-sitemap').addEventListener('click', async function () {
+        var manifest = await loadManifest();
+        var xml = buildSitemap(manifest);
+        if (window.showDirectoryPicker) {
+          try {
+            var root = await showDirectoryPicker({ mode: 'readwrite' });
+            await writeTextFile(root, 'sitemap.xml', xml);
+            showToast('sitemap.xml written to your project root.');
+            return;
+          } catch (e) {
+            if (e.name === 'AbortError') { showToast('Cancelled.', true); return; }
+          }
+        }
+        download('sitemap.xml', xml, 'application/xml');
+        showToast('sitemap.xml downloaded — place it in the site root.');
+      });
+
+      /* ================= build article file ================= */
+      function parseList(str) {
+        return String(str || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+      }
+
+      function buildArticle() {
+        var title = $('field-title').value.trim();
+        if (!title) throw new Error('Please enter an article title.');
+        var slug = ($('field-slug').value.trim() || slugify(title));
+        var desc = $('field-desc').value.trim() || title;
+        var keywords = parseList($('field-keywords').value);
+        var tags = parseList($('field-tags').value);
+        var author = $('field-author').value.trim() || 'Zupet Team';
+        var date = $('field-date').value || new Date().toISOString().slice(0, 10);
+        var featured = $('field-featured-path').value || '';
+        var url = BASE_URL + '/articles/' + slug;
+        var imgUrl = featured ? (BASE_URL + '/' + featured) : '';
+
+        // body: images are referenced site-root-relative; from articles/ they need ../ prefix
+        var body = area.innerHTML
+          .replace(/\ssrc="img\/blog\//g, ' src="../img/blog/')
+          .replace(/\ssrc='img\/blog\//g, " src='../img/blog/");
+
+        var iso = date + 'T09:00:00+00:00';
+        var pretty = new Date(date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+        var jsonld = {
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          'mainEntityOfPage': { '@type': 'WebPage', '@id': url },
+          'headline': title,
+          'description': desc,
+          'image': imgUrl,
+          'datePublished': iso,
+          'author': { '@type': 'Organization', 'name': author },
+          'publisher': { '@type': 'Organization', 'name': 'Zupet', 'logo': { '@type': 'ImageObject', 'url': BASE_URL + '/img/logo.svg' } },
+          'keywords': tags.join(', ')
+        };
+
+        var ogTags = '';
+        if (imgUrl) {
+          ogTags += '\n  <meta property="og:image" content="' + esc(imgUrl) + '" />\n' +
+                    '  <meta name="twitter:image" content="' + esc(imgUrl) + '" />';
+        }
+
+        var html =
+'<!DOCTYPE html>\n' +
+'<html lang="en">\n' +
+'<head>\n' +
+'  <meta charset="UTF-8" />\n' +
+'  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n' +
+'  <title>' + esc(title) + ' | Zupet</title>\n' +
+'  <meta name="description" content="' + esc(desc) + '" />\n' +
+(keywords.length ? '  <meta name="keywords" content="' + esc(keywords.join(', ')) + '" />\n' : '') +
+'  <meta name="author" content="' + esc(author) + '" />\n' +
+'  <link rel="canonical" href="' + esc(url) + '" />\n' +
+'  <meta property="og:type" content="article" />\n' +
+'  <meta property="og:site_name" content="Zupet" />\n' +
+'  <meta property="og:title" content="' + esc(title) + '" />\n' +
+'  <meta property="og:description" content="' + esc(desc) + '" />\n' +
+'  <meta property="og:url" content="' + esc(url) + '" />' + ogTags + '\n' +
+'  <meta property="article:published_time" content="' + iso + '" />\n' +
+(tags.map(function (t) { return '  <meta property="article:tag" content="' + esc(t) + '" />\n'; }).join('')) +
+'  <meta name="twitter:card" content="summary_large_image" />\n' +
+'  <meta name="twitter:title" content="' + esc(title) + '" />\n' +
+'  <meta name="twitter:description" content="' + esc(desc) + '" />\n' +
+'  <meta name="theme-color" content="#0d4f4a" />\n' +
+'  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />\n' +
+'  <link rel="preconnect" href="https://fonts.googleapis.com" />\n' +
+'  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n' +
+'  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />\n' +
+'  <link rel="stylesheet" href="../style.css" />\n' +
+'  <link rel="stylesheet" href="../blog.css" />\n' +
+'  <script type="application/ld+json">\n' + JSON.stringify(jsonld, null, 2) + '\n  <\/script>\n' +
+'</head>\n' +
+'<body class="page-shell">\n' +
+'  <header class="site-header">\n' +
+'    <nav class="nav container" aria-label="Main navigation">\n' +
+'      <a href="../index.html" class="nav-logo" aria-label="Zupet — back to home">\n' +
+'        <span class="nav-logo-mark" aria-hidden="true">\n' +
+'          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-5 3-7 8-7s8 2 8 7-3 7-8 7-8-2-8-7z"/><path d="M14 12h4M18 8l3 4-3 4"/><circle cx="8.5" cy="10.5" r="0.8" fill="currentColor"/></svg>\n' +
+'        </span>\n' +
+'        <span class="nav-logo-text">Zupet</span>\n' +
+'      </a>\n' +
+'      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>\n' +
+'      <ul class="nav-links" id="nav-links">\n' +
+'        <li><a href="../index.html" class="nav-link">Home</a></li>\n' +
+'        <li><a href="../index.html#products" class="nav-link">Products</a></li>\n' +
+'        <li><a href="../index.html#about" class="nav-link">About</a></li>\n' +
+'        <li><a href="../blog.html" class="nav-link active">Blog</a></li>\n' +
+'        <li><a href="../index.html#contact" class="nav-link">Contact</a></li>\n' +
+'        <li class="nav-cta-wrap"><a href="../index.html#products" class="nav-cta">Explore range</a></li>\n' +
+'      </ul>\n' +
+'    </nav>\n' +
+'  </header>\n' +
+'  <main class="section article-page">\n' +
+'    <div class="container">\n' +
+'      <article class="article">\n' +
+'        <header class="article-header">\n' +
+'          <p class="eyebrow article-eyebrow">Blog</p>\n' +
+'          <h1 class="article-title">' + esc(title) + '</h1>\n' +
+'          <div class="article-meta"><span>' + pretty + '</span><span>&middot;</span><span>By ' + esc(author) + '</span></div>\n' +
+'        </header>\n' +
+(featured ? '        <figure class="article-featured"><img src="../' + esc(featured) + '" alt="' + esc(title) + '" /></figure>\n' : '') +
+'        <div class="article-body">\n' + body + '\n        </div>\n' +
+(tags.length ? '        <div class="article-tags">' + tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>\n' : '') +
+'        <footer class="article-footer">\n' +
+'          <a class="btn btn-ghost-light" href="../blog.html">&larr; All articles</a>\n' +
+'          <a class="btn btn-primary" href="../index.html#products">Shop Zupet</a>\n' +
+'        </footer>\n' +
+'      </article>\n' +
+'    </div>\n' +
+'  </main>\n' +
+'  <footer class="site-footer">\n' +
+'    <div class="container footer-grid">\n' +
+'      <div><a class="footer-logo" href="../index.html">Zupet</a><p class="footer-blurb">Premium, natural fish food for healthy, vibrant aquariums.</p></div>\n' +
+'      <div><h4 class="footer-heading">Explore</h4><ul class="footer-links"><li><a href="../index.html#products">Products</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../index.html#about">About</a></li></ul></div>\n' +
+'      <div><h4 class="footer-heading">Support</h4><ul class="footer-links"><li><a href="../index.html#contact">Contact</a></li><li><a href="../index.html#why">Why Zupet</a></li></ul></div>\n' +
+'    </div>\n' +
+'    <div class="container footer-bottom"><span>&copy; <span id="year">2026</span> Zupet. All rights reserved.</span><span>Made with care for your fish.</span></div>\n' +
+'  </footer>\n' +
+'  <script>\n' +
+'    (function(){var h=document.querySelector(\'.site-header\'),t=document.getElementById(\'nav-toggle\'),c=function(){h.classList.remove(\'nav-open\');t&&t.setAttribute(\'aria-expanded\',\'false\')};if(t)t.addEventListener(\'click\',function(){var o=h.classList.toggle(\'nav-open\');t.setAttribute(\'aria-expanded\',String(o))});document.querySelectorAll(\'.nav-links a\').forEach(function(a){a.addEventListener(\'click\',c)});var y=document.getElementById(\'year\');if(y)y.textContent=String(new Date().getFullYear());})();\n' +
+'  <\/script>\n' +
+'</body>\n' +
+'</html>\n';
+
+        var manifestEntry = {
+          slug: slug,
+          title: title,
+          excerpt: desc,
+          date: date,
+          author: author,
+          image: featured || '',
+          tags: tags,
+          url: 'articles/' + slug
+        };
+
+        return { slug: slug, html: html, entry: manifestEntry };
+      }
+
+      /* ================= manifest ================= */
+      function loadManifest() {
+        return fetch(MANIFEST).then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+          .catch(function () {
+            return { posts: [{ slug: 'welcome-to-zupet-blog', title: 'Welcome to the Zupet Blog', excerpt: '', date: '2026-08-31', author: 'Zupet Team', image: 'img/blog/sample-cover.svg', tags: ['News', 'Guides'], url: 'articles/welcome-to-zupet-blog' }] };
+          });
+      }
+
+      function upsertManifest(manifest, entry) {
+        var posts = (manifest.posts || []).slice();
+        var idx = posts.findIndex(function (p) { return p.slug === entry.slug; });
+        if (idx >= 0) posts[idx] = entry; else posts.unshift(entry);
+        return { posts: posts };
+      }
+
+      /* ================= sitemap ================= */
+      function buildSitemap(manifest) {
+        var today = new Date().toISOString().slice(0, 10);
+        var urls = [
+          { loc: BASE_URL + '/',          lastmod: today, freq: 'weekly',  pri: '1.0' },
+          { loc: BASE_URL + '/blog.html', lastmod: today, freq: 'weekly',  pri: '0.9' }
+        ];
+        (manifest.posts || []).forEach(function (p) {
+          urls.push({ loc: BASE_URL + '/' + p.url, lastmod: p.date || today, freq: 'monthly', pri: '0.8' });
+        });
+        return '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+          urls.map(function (u) {
+            return '  <url>\n' +
+              '    <loc>' + esc(u.loc) + '</loc>\n' +
+              '    <lastmod>' + u.lastmod + '</lastmod>\n' +
+              '    <changefreq>' + u.freq + '</changefreq>\n' +
+              '    <priority>' + u.pri + '</priority>\n' +
+              '  </url>';
+          }).join('\n') +
+          '\n</urlset>\n';
+      }
+
+      async function writeTextFile(dirHandle, name, text) {
+        var fh = await dirHandle.getFileHandle(name, { create: true });
+        var w = await fh.createWritable();
+        await w.write(text);
+        await w.close();
+      }
+
+      /* ================= publish ================= */
+      $('btn-publish').addEventListener('click', async function () {
+        var built;
+        try { built = buildArticle(); }
+        catch (e) { showToast(e.message, true); return; }
+
+        var manifest = await loadManifest();
+        var nextManifest = upsertManifest(manifest, built.entry);
+        var manifestText = JSON.stringify(nextManifest, null, 2);
+
+        var sitemapXml = buildSitemap(nextManifest);
+
+        // 1) File System Access API → pick the project root; write article, manifest + sitemap
+        if (window.showDirectoryPicker) {
+          try {
+            var root = await showDirectoryPicker({ mode: 'readwrite' });
+            var articlesDir = await root.getDirectoryHandle('articles', { create: true });
+
+            await writeTextFile(articlesDir, built.slug + '.html', built.html);
+            await writeTextFile(articlesDir, 'index.json', manifestText);
+            await writeTextFile(root, 'sitemap.xml', sitemapXml);
+
+            showToast('Published! Wrote articles/' + built.slug + '.html, updated index.json + sitemap.xml.');
+            try { sessionStorage.removeItem('zupet-draft'); } catch (e) {}
+            return;
+          } catch (e) {
+            if (e.name === 'AbortError') { showToast('Publish cancelled — no folder chosen.', true); return; }
+            // fall through to download
+          }
+        }
+
+        // 2) Fallback → download the files with instructions
+        download(built.slug + '.html', built.html, 'text/html');
+        download('index.json', manifestText, 'application/json');
+        download('sitemap.xml', sitemapXml, 'application/xml');
+        showToast('Published files downloaded. Put ' + built.slug + '.html in articles/, replace articles/index.json, and put sitemap.xml in the site root.');
+      });
+    })();
+  </script>
+</body>
+</html>

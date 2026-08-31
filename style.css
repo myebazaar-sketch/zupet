@@ -176,6 +176,17 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
 }
 .btn-ghost:hover { background: rgba(var(--color-accent-rgb), .16); }
 
+/* Ghost button for LIGHT backgrounds (white cards / pages) — dark text */
+.btn-ghost-light {
+  border-color: var(--color-accent);
+  color: var(--color-primary);
+  background: transparent;
+}
+.btn-ghost-light:hover {
+  background: rgba(var(--color-accent-rgb), .16);
+  color: var(--color-primary-dark);
+}
+
 /* Form submit — gold accent (class name kept for compatibility) */
 .btn-teal {
   background: var(--color-accent);
@@ -538,27 +549,58 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
 .logo-band {
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  padding-block: clamp(3rem, 7vw, 5.5rem);
+  padding-block: clamp(1.5rem, 3.5vw, 2.75rem);
 }
 
 .logo-band-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: .9rem;
   text-align: center;
 }
 
 .logo-band-image {
-  width: clamp(200px, 42vw, 360px);
+  width: clamp(150px, 30vw, 230px);
   height: auto;
 }
 
 .logo-band-caption {
-  font-size: .85rem;
+  font-size: .75rem;
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+}
+
+/* 'Available on Amazon' retailer badge */
+.amazon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: .6rem;
+  padding: 1.05rem 2.3rem;
+  border-radius: 999px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
+}
+.amazon-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-accent);
+}
+.amazon-badge-flag {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.amazon-badge-logo {
+  display: block;
+  width: 152px;
+  height: auto;
 }
 
 /* --------------------------------------------------------------------------
@@ -598,7 +640,18 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
   background: linear-gradient(145deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
 }
 
-.product-img svg { width: clamp(56px, 30%, 84px); height: auto; }
+.product-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.product-img svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
 .product-body {
   display: flex;

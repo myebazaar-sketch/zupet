@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Blog | Zupet — Aquarium Care Guides &amp; News</title>
+  <meta name="description" content="Aquarium care guides, species spotlights, feeding tips and news from Zupet — premium natural fish food for healthy, vibrant aquariums." />
+  <meta name="keywords" content="aquarium blog, fish keeping guide, fish food, aquarium tips, Zupet" />
+  <meta name="author" content="Zupet" />
+  <link rel="canonical" href="https://zupet.in/blog.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Zupet" />
+  <meta property="og:title" content="Blog | Zupet" />
+  <meta property="og:description" content="Aquarium care guides, species spotlights and news from Zupet." />
+  <meta property="og:url" content="https://zupet.in/blog.html" />
+  <meta property="og:image" content="https://zupet.in/img/blog/sample-cover.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog | Zupet" />
+  <meta name="twitter:description" content="Aquarium care guides, species spotlights and news from Zupet." />
+  <meta name="theme-color" content="#0d4f4a" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d4f4a'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='36' font-weight='700' fill='white' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="blog.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Zupet Blog",
+    "url": "https://zupet.in/blog.html",
+    "description": "Aquarium care guides, species spotlights, feeding tips and news from Zupet.",
+    "publisher": { "@type": "Organization", "name": "Zupet" }
+  }
+  </script>
+</head>
+<body class="page-shell">
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Zupet — back to home">
+        <span class="nav-logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-5 3-7 8-7s8 2 8 7-3 7-8 7-8-2-8-7z"/><path d="M14 12h4M18 8l3 4-3 4"/><circle cx="8.5" cy="10.5" r="0.8" fill="currentColor"/></svg>
+        </span>
+        <span class="nav-logo-text">Zupet</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#products" class="nav-link">Products</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="blog.html" class="nav-link active">Blog</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li class="nav-cta-wrap"><a href="index.html#products" class="nav-cta">Explore range</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section blog-page">
+    <div class="container">
+      <div class="blog-head">
+        <p class="eyebrow">Zupet Journal</p>
+        <h1 class="section-title">The Blog</h1>
+        <p class="section-lead">Aquarium care guides, species spotlights, feeding tips and behind-the-scenes stories from the Zupet team.</p>
+      </div>
+      <div class="blog-grid" id="blog-grid" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="footer-logo" href="index.html">Zupet</a>
+        <p class="footer-blurb">Premium, natural fish food for healthy, vibrant aquariums.</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Explore</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="index.html#about">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Support</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#why">Why Zupet</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; <span id="year">2026</span> Zupet. All rights reserved.</span>
+      <span>Made with care for your fish.</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- header behaviour ---- */
+      var header = document.querySelector('.site-header');
+      var toggle = document.getElementById('nav-toggle');
+      var closeNav = function () { header.classList.remove('nav-open'); toggle && toggle.setAttribute('aria-expanded', 'false'); };
+      if (toggle) toggle.addEventListener('click', function () {
+        var open = header.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      document.querySelectorAll('.nav-links a').forEach(function (a) { a.addEventListener('click', closeNav); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
+      var year = document.getElementById('year');
+      if (year) year.textContent = String(new Date().getFullYear());
+
+      /* ---- fallback posts (used if articles/index.json can't be fetched) ---- */
+      var FALLBACK = {
+        posts: [{
+          slug: "welcome-to-zupet-blog",
+          title: "Welcome to the Zupet Blog",
+          excerpt: "Your new home for aquarium care tips, species guides and behind-the-scenes stories from the Zupet team.",
+          date: "2026-08-31",
+          author: "Zupet Team",
+          image: "img/blog/sample-cover.svg",
+          tags: ["News", "Guides"],
+          url: "articles/welcome-to-zupet-blog"
+        }]
+      };
+
+      /* ---- render cards ---- */
+      function formatDate(iso) {
+        try {
+          return new Date(iso + 'T00:00:00').toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+        } catch (e) { return iso; }
+      }
+
+      // Clean URLs: use extensionless links on a real server, .html locally (file://)
+      function linkUrl(p) {
+        var base = p.url || '';
+        if (location.protocol === 'file:' && base && base.indexOf('.html') === -1) base += '.html';
+        return base;
+      }
+
+      function render(posts) {
+        var grid = document.getElementById('blog-grid');
+        if (!grid) return;
+        if (!posts || !posts.length) {
+          grid.innerHTML = '<div class="blog-empty"><h3>No articles yet</h3><p>Check back soon — we are busy writing.</p></div>';
+          return;
+        }
+        grid.innerHTML = posts.map(function (p) {
+          var href = linkUrl(p);
+          var media = p.image
+            ? '<img src="' + p.image + '" alt="' + (p.title || '') + '" loading="lazy" />'
+            : '<div class="no-img">ZUPET</div>';
+          var tags = (p.tags || []).map(function (t) { return '<span class="tag">' + t + '</span>'; }).join(' ');
+          return '' +
+            '<article class="blog-card reveal is-visible">' +
+              '<a class="blog-card-media" href="' + href + '" tabindex="-1" aria-hidden="true">' + media + '</a>' +
+              '<div class="blog-card-body">' +
+                '<div class="blog-card-meta"><span>' + formatDate(p.date) + '</span><span>&middot;</span><span>' + (p.author || 'Zupet') + '</span></div>' +
+                '<h3 class="blog-card-title"><a href="' + href + '">' + p.title + '</a></h3>' +
+                '<p class="blog-card-excerpt">' + p.excerpt + '</p>' +
+                '<div class="blog-card-footer">' +
+                  '<a class="blog-card-more" href="' + href + '">Read article &rarr;</a>' +
+                  '<div class="article-tags">' + tags + '</div>' +
+                '</div>' +
+              '</div>' +
+            '</article>';
+        }).join('');
+      }
+
+      fetch('articles/index.json')
+        .then(function (r) { if (!r.ok) throw new Error('load failed'); return r.json(); })
+        .then(function (data) { render(data.posts); })
+        .catch(function () { render(FALLBACK.posts); });
+    })();
+  </script>
+</body>
+</html>

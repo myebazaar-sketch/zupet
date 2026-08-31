@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "slug": "welcome-to-zupet-blog",
+      "title": "Welcome to the Zupet Blog",
+      "excerpt": "Your new home for aquarium care tips, species guides and behind-the-scenes stories from the Zupet team.",
+      "date": "2026-08-31",
+      "author": "Zupet Team",
+      "image": "img/blog/sample-cover.svg",
+      "tags": ["News", "Guides"],
+      "url": "articles/welcome-to-zupet-blog"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found | Zupet</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0d4f4a" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d4f4a'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='36' font-weight='700' fill='%23d4af37' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="page-shell">
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Zupet — back to home">
+        <span class="nav-logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-5 3-7 8-7s8 2 8 7-3 7-8 7-8-2-8-7z"/><path d="M14 12h4M18 8l3 4-3 4"/><circle cx="8.5" cy="10.5" r="0.8" fill="currentColor"/></svg>
+        </span>
+        <span class="nav-logo-text">Zupet</span>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#products" class="nav-link">Products</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li class="nav-cta-wrap"><a href="index.html#products" class="nav-cta">Explore range</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section">
+    <div class="container" style="max-width:560px;text-align:center">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="section-title" style="font-size:clamp(3rem,10vw,5rem)">Oops, fish not found.</h1>
+      <p class="section-lead">That page doesn&rsquo;t exist or has moved. Let&rsquo;s get you back to clear waters.</p>
+      <div class="hero-cta" style="justify-content:center;margin-top:1.5rem">
+        <a href="index.html" class="btn btn-primary">Back to home</a>
+        <a href="blog.html" class="btn btn-ghost-light">Read the blog</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="justify-content:center">
+      <span>&copy; <span id="year">2026</span> Zupet. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = String(new Date().getFullYear());
+  </script>
+</body>
+</html>
