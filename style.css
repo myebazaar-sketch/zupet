@@ -668,6 +668,13 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
   font-size: .95rem;
 }
 
+.product-price {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: .2px;
+}
+
 /* "Buy it now" — Amazon-style CTA that deep-links to the product on Amazon */
 .buy-btn {
   display: inline-flex;
