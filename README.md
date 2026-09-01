@@ -39,9 +39,9 @@ npx serve .
 Search the code for `PLACEHOLDER` / `REPLACE` comments and update:
 
 - **Logo** — swap the `<img>` in the header and logo band with your logo file
-  (e.g. `images/logo.svg`). Drop files in a new `images/` folder.
+  (e.g. `img/logo.svg`). Drop files in the existing `img/` folder.
 - **Product photos** — each product card has an inline SVG placeholder;
-  replace it with `<img src="images/your-photo.jpg" alt="...">`.
+  replace it with `<img src="img/your-photo.jpg" alt="...">`.
 - **Contact form** — the form is front-end only. Wire it to a service like
   [Formspree](https://formspree.io) for real submissions (see note in `script.js`).
 - **Meta / Open Graph** — `og:url`, `og:image`, `canonical`, social links.
