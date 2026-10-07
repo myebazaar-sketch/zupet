@@ -132,7 +132,7 @@
           author: "Zupet Team",
           image: "img/blog/sample-cover.svg",
           tags: ["News", "Guides"],
-          url: "articles/welcome-to-zupet-blog"
+          url: "articles/welcome-to-zupet-blog.html"
         }]
       };
 
@@ -146,7 +146,7 @@
       // Clean URLs: use extensionless links on a real server, .html locally (file://)
       function linkUrl(p) {
         var base = p.url || '';
-        if (location.protocol === 'file:' && base && base.indexOf('.html') === -1) base += '.html';
+        if (base && base.indexOf('.html') === -1) base += '.html';
         return base;
       }
 

@@ -1,6 +1,16 @@
 {
   "posts": [
     {
+      "slug": "mealworms-vs-black-soldier-fly-larvae-which-is-better-for-aquarium-fish",
+      "title": "Mealworms vs. Black Soldier Fly Larvae: Which Is Better for Aquarium Fish?",
+      "excerpt": "Mealworms and black soldier fly larvae (BSFL) look alike but are different insects with different nutrition. Compare protein, fat, calcium and sustainability to choose the right treat for your fish. By Zupet.",
+      "date": "2026-10-07",
+      "author": "Zupet",
+      "image": "img/blog/sample-cover.svg",
+      "tags": ["Nutrition", "Feeding"],
+      "url": "articles/mealworms-vs-black-soldier-fly-larvae-which-is-better-for-aquarium-fish.html"
+    },
+    {
       "slug": "welcome-to-zupet-blog",
       "title": "Welcome to the Zupet Blog",
       "excerpt": "Your new home for aquarium care tips, species guides and behind-the-scenes stories from the Zupet team.",
@@ -8,7 +18,7 @@
       "author": "Zupet Team",
       "image": "img/blog/sample-cover.svg",
       "tags": ["News", "Guides"],
-      "url": "articles/welcome-to-zupet-blog"
+      "url": "articles/welcome-to-zupet-blog.html"
     }
   ]
 }
