@@ -13,8 +13,10 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Force HTTPS
+  # Railway terminates TLS at its proxy, so Apache may see HTTP for an
+  # HTTPS request. Respect the original scheme to avoid redirect loops.
   RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # Redirect www.zupet.in -> zupet.in (and any other subdomain-prefixed host)
