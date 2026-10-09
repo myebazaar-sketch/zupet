@@ -159,7 +159,7 @@
         }
         grid.innerHTML = posts.map(function (p) {
           var href = linkUrl(p);
-          var media = p.image
+          var media = p.image && p.image !== 'pending'
             ? '<img src="' + p.image + '" alt="' + (p.title || '') + '" loading="lazy" />'
             : '<div class="no-img">ZUPET</div>';
           var tags = (p.tags || []).map(function (t) { return '<span class="tag">' + t + '</span>'; }).join(' ');

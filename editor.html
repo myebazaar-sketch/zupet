@@ -270,7 +270,7 @@
             // otherwise fall through to the download fallback
           }
         }
-        fallbackImage(path, dataURL, name);
+        fallbackImage(path, dataURL, name, cb);
       }
 
       function readAsDataURL(file) {
@@ -282,13 +282,14 @@
         });
       }
 
-      function fallbackImage(path, dataURL, name) {
+      function fallbackImage(path, dataURL, name, cb) {
         var a = document.createElement('a');
         a.href = dataURL;
         a.download = name;
         document.body.appendChild(a);
         a.click();
         setTimeout(function () { a.remove(); }, 1000);
+        cb(path, dataURL);
         showToast('Image downloaded as "' + name + '" — this browser can\u2019t write folders directly, so save it into the img/blog/ folder.');
       }
 
@@ -326,10 +327,10 @@
           preview.appendChild(img);
           $('field-featured-path').value = 'pending';
           var name = file.name.toLowerCase().replace(/[^a-z0-9.\-_]/g, '-').replace(/-+/g, '-');
-          handleImageFile(file, function (path) {
+          handleImageFile(file, function (path, dataURL) {
             $('field-featured-path').value = path;
             var img2 = document.createElement('img');
-            img2.src = path;
+            img2.src = dataURL;
             preview.innerHTML = '';
             preview.appendChild(img2);
           });
