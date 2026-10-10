@@ -80,6 +80,27 @@
         caption: 'Small-size natural dried leaves',
         alt: 'Dry Almond Leaves 15pc Small Size 6 inches Natural Dried Catappa for Aquarium',
         href: '#product-almond-leaves-15pc'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/61wLVofHdvL._SL1195_.jpg',
+        name: 'Tubifex cubes',
+        caption: 'Freeze-dried fish feed',
+        alt: 'Freeze Dried Tubifex Worm Cubes Natural Fish Feed 20g',
+        href: '#product-tubifex-cubes'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/51CYWsx3xuL._SL1344_.jpg',
+        name: 'Foxtail millet bird seed',
+        caption: 'Natural seed for companion birds',
+        alt: 'Premium natural foxtail millet bird food for parrots, cockatiels and lovebirds, 1 kg',
+        href: '#product-bird-seed-1kg'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/616oLBO114L._SL1024_.jpg',
+        name: 'River shrimp + krill',
+        caption: 'Sun-dried high-protein treat',
+        alt: 'Sun-dried river shrimp and krill fish food, pack of 2',
+        href: '#product-shrimp-krill-pack-2'
       }
     ];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
