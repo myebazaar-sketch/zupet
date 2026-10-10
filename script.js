@@ -8,7 +8,9 @@
      2. Mobile hamburger menu toggle
      3. Scroll-reveal animations (IntersectionObserver)
      4. Active nav-link highlighting while scrolling
-     5. Front-end only contact form handler (no backend)
+     5. Rotating homepage product feature
+     6. Front-end only contact form handler (no backend)
+     7. Dynamic footer year
    ========================================================================== */
 
 (function () {
@@ -19,7 +21,93 @@
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
   /* ------------------------------------------------------------------
-     1. STICKY HEADER STATE
+     1. ROTATING HOMEPAGE PRODUCT
+     Cycles through the existing product photos and links. The rotation
+     pauses while the shopper is interacting with the feature.
+     ------------------------------------------------------------------ */
+  const heroProduct = $('#hero-product-link');
+  const heroProductImage = $('#hero-product-image');
+  const heroProductName = $('#hero-product-name');
+  const heroProductCaption = $('#hero-product-caption');
+
+  if (heroProduct && heroProductImage && heroProductName && heroProductCaption) {
+    const products = [
+      {
+        image: 'https://m.media-amazon.com/images/I/61jZ9udtQ0L._SL1024_.jpg',
+        name: 'River shrimp',
+        caption: 'A naturally delicious favourite',
+        alt: 'Zupet River Shrimp Sun Dried Krill Fish Food',
+        href: '#product-premium-flakes'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/617h3Wos4nL._SL1195_.jpg',
+        name: 'Shrimp + larva',
+        caption: 'Two protein-rich favourites',
+        alt: 'Zupet River Shrimp and Meal Worm Fly Larva Pet Food Combo',
+        href: '#product-color-boost'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/8135bV7ZreL._SL1500_.jpg',
+        name: 'Insect treats',
+        caption: 'Crunchy, naturally rich bites',
+        alt: 'Zupet Black Soldier Fly Larvae and Mealworm Treat',
+        href: '#product-spirulina-wafers'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/71POME8NPZL._SL1448_.jpg',
+        name: 'A handy two-pack',
+        caption: 'Mealworm + black soldier fly',
+        alt: 'Zupet Meal Worm and Black Soldier Fly Larva Puffed Pack of 2',
+        href: '#product-nano-granules'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/61EIKLCOBRL._SL1195_.jpg',
+        name: 'Jumbo shrimp',
+        caption: 'Made for your bigger fish',
+        alt: 'Zupet Jumbo Shrimp Fish Food 50gm',
+        href: '#product-shrimp-delight'
+      },
+      {
+        image: 'https://images.meesho.com/images/products/999591450/nzvoj_512.avif?width=512',
+        name: 'Catappa leaves',
+        caption: 'A natural touch for your tank',
+        alt: 'Zupet Natural Dried Catappa Almond Leaves for Aquarium',
+        href: '#product-betta-bites'
+      }
+    ];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let productIndex = 0;
+
+    heroProductImage.addEventListener('load', () => {
+      heroProductImage.classList.remove('is-changing');
+    });
+
+    heroProductImage.addEventListener('error', () => {
+      console.error('Failed to load homepage featured product image:', heroProductImage.src);
+      heroProductImage.classList.remove('is-changing');
+    });
+
+    window.setInterval(() => {
+      if (
+        document.hidden ||
+        reducedMotion.matches ||
+        heroProduct.matches(':hover, :focus-within')
+      ) return;
+
+      productIndex = (productIndex + 1) % products.length;
+      const product = products[productIndex];
+      heroProductImage.classList.add('is-changing');
+      heroProductImage.src = product.image;
+      heroProductImage.alt = product.alt;
+      heroProduct.href = product.href;
+      heroProduct.setAttribute('aria-label', 'Explore ' + product.name);
+      heroProductName.textContent = product.name;
+      heroProductCaption.textContent = product.caption;
+    }, 4200);
+  }
+
+  /* ------------------------------------------------------------------
+     2. STICKY HEADER STATE
      Adds a subtle shadow / stronger background once the page is scrolled.
      ------------------------------------------------------------------ */
   const header = $('.site-header');
@@ -32,7 +120,7 @@
   window.addEventListener('scroll', updateHeader, { passive: true });
 
   /* ------------------------------------------------------------------
-     2. MOBILE NAVIGATION
+     3. MOBILE NAVIGATION
      Hamburger button toggles .nav-open on the header, which shows the
      links panel (see CSS). Closes on link click, Escape, or desktop resize.
      ------------------------------------------------------------------ */
@@ -64,7 +152,7 @@
   });
 
   /* ------------------------------------------------------------------
-     3. SCROLL-REVEAL ANIMATIONS
+     4. SCROLL-REVEAL ANIMATIONS
      Elements with class .reveal fade/slide in the first time they enter
      the viewport. Falls back to instantly-visible if no IntersectionObserver.
      ------------------------------------------------------------------ */
@@ -90,7 +178,7 @@
   }
 
   /* ------------------------------------------------------------------
-     4. ACTIVE NAV-LINK HIGHLIGHTING
+     5. ACTIVE NAV-LINK HIGHLIGHTING
      A scroll-spy highlights the nav link for the section currently in view.
      ------------------------------------------------------------------ */
   const navMap = {};
@@ -120,7 +208,7 @@
   }
 
   /* ------------------------------------------------------------------
-     5. CONTACT FORM (FRONT-END ONLY)
+     6. CONTACT FORM (FRONT-END ONLY)
      No backend — this simulates a successful submission and shows a
      confirmation message. To send real emails later:
        - Point the <form> action to a service (e.g. Formspree)
@@ -153,7 +241,7 @@
   }
 
   /* ------------------------------------------------------------------
-     6. FOOTER YEAR
+     7. FOOTER YEAR
      Keeps the copyright year current without editing the markup.
      ------------------------------------------------------------------ */
   const yearEl = $('#year');

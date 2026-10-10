@@ -182,7 +182,7 @@
   </script>
 </head>
 
-<body>
+<body class="home-page">
 
   <!-- ============================================================
        HEADER / STICKY NAVIGATION
@@ -227,28 +227,50 @@
 
     <!-- ============================================================
          HERO SECTION (id="home")
-         Pure CSS ocean/aquarium gradient + subtle bubble pattern.
-         No stock photos required.
          ============================================================ -->
     <section class="hero" id="home">
       <div class="container hero-inner">
-        <span class="hero-badge">Natural ingredients &middot; Vet-approved &middot; Aquarist-trusted</span>
-        <h1 class="hero-title">Premium nutrition for the world's happiest fish.</h1>
-        <p class="hero-tagline">
-          Zupet crafts complete, natural fish food that supports vibrant color, strong growth
-          and crystal-clear water — trusted by hobbyists, breeders and retailers.
-        </p>
-        <div class="hero-cta">
-          <a href="#products" class="btn btn-primary">Explore the range</a>
-          <a href="#about" class="btn btn-ghost">Our story</a>
+        <div class="hero-copy">
+          <span class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span> A little more life in every tank</span>
+          <h1 class="hero-title">Good things grow <span>underwater.</span></h1>
+          <p class="hero-tagline">
+            Thoughtful, natural food for the fish that make your aquarium feel like home.
+            Find a new favourite for every splash, nibble and curious little swimmer.
+          </p>
+          <div class="hero-cta">
+            <a href="#products" class="btn btn-primary">Find their favourite <span aria-hidden="true">↗</span></a>
+            <a href="#about" class="btn btn-ghost">Get to know Zupet</a>
+          </div>
+          <div class="hero-note">
+            <span class="hero-note-stars" aria-hidden="true">✳</span>
+            <span>Made with care for the life in your aquarium</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-glow"></div>
+          <div class="hero-visual-orbit hero-visual-orbit--one"></div>
+          <div class="hero-visual-orbit hero-visual-orbit--two"></div>
+          <span class="hero-visual-label">A little treat<br>for your tank</span>
+          <a class="hero-product" id="hero-product-link" href="#product-premium-flakes" aria-label="Explore River Shrimp fish food">
+            <img
+              id="hero-product-image"
+              src="https://m.media-amazon.com/images/I/61jZ9udtQ0L._SL1024_.jpg"
+              alt="Zupet River Shrimp Sun Dried Krill Fish Food"
+              fetchpriority="high" />
+          </a>
+          <div class="hero-product-note">
+            <span class="hero-product-note-icon" aria-hidden="true">✳</span>
+            <span><strong id="hero-product-name">River shrimp</strong><small id="hero-product-caption">A naturally delicious favourite</small></span>
+          </div>
+          <span class="hero-visual-bubble hero-visual-bubble--one"></span>
+          <span class="hero-visual-bubble hero-visual-bubble--two"></span>
+          <span class="hero-visual-bubble hero-visual-bubble--three"></span>
         </div>
       </div>
 
       <!-- ============================================================
            DECORATIVE AQUARIUM SCENE
-           Pure inline SVG/CSS — no image files required. Floating fish,
-           shrimp, seaweed and bubbles sit behind the centered copy.
-           Colors are theme-driven via CSS custom properties.
            ============================================================ -->
       <div class="hero-scene" aria-hidden="true">
 
@@ -382,31 +404,47 @@
       </svg>
     </section>
 
-    <!-- ============================================================
-         LOGO SHOWCASE BAND
-         Centered, large, minimal — generous white space.
-         Replace the placeholder <img> src with your own logo file.
-         ============================================================ -->
-    <section class="logo-band" aria-label="Zupet brand logo">
-      <div class="container logo-band-inner">
-        <!--
-          LOGO PLACEHOLDER (showcase):
-          Replace src below with your logo file, e.g. src="img/logo.svg"
-          or "logo.png". Recommended: 320 x 120 px, transparent background.
-        -->
-        <img
-          class="logo-band-image"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 120'%3E%3Ctext x='160' y='78' font-family='Inter, Arial, sans-serif' font-size='58' font-weight='800' fill='%230e7a94' text-anchor='middle' letter-spacing='2'%3EZupet%3C/text%3E%3C/svg%3E"
-          alt="Zupet logo — placeholder, replace this image with your own logo file"
-          width="320" height="120" />
-        <p class="logo-band-caption">Insert your official logo here</p>
-
-        <!-- RETAILER BADGE (placeholder): 'Available on Amazon'.
-             Swap this <a> for the official Amazon Associate badge if you
-             have one, or just update the href to your Amazon store/search
-             link. -->
-        <a class="amazon-badge" href="https://www.amazon.com/s?k=zupet" target="_blank" rel="noopener sponsored" aria-label="Zupet is available on Amazon">
-          <span class="amazon-badge-flag">Available on</span>
+    <!-- Shop popular picks without scrolling through the whole range. -->
+    <section class="shop-shortcuts" aria-label="Shop the Zupet range">
+      <div class="container shop-shortcuts-inner">
+        <div class="shop-shortcuts-heading">
+          <p class="shop-shortcuts-kicker">A good place to start</p>
+          <h2>Little tank favourites</h2>
+        </div>
+        <nav class="shop-category-list" aria-label="Shop products by type">
+          <a class="shop-category" href="#product-premium-flakes">
+            <img class="shop-category-image" src="https://m.media-amazon.com/images/I/61jZ9udtQ0L._SL1024_.jpg" alt="" loading="lazy" />
+            <span class="shop-category-copy"><small>Protein-rich snack</small><strong>River shrimp</strong></span>
+            <span class="shop-category-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="shop-category" href="#product-color-boost">
+            <img class="shop-category-image" src="https://m.media-amazon.com/images/I/617h3Wos4nL._SL1195_.jpg" alt="" loading="lazy" />
+            <span class="shop-category-copy"><small>A little variety</small><strong>Shrimp + larva</strong></span>
+            <span class="shop-category-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="shop-category" href="#product-spirulina-wafers">
+            <img class="shop-category-image" src="https://m.media-amazon.com/images/I/8135bV7ZreL._SL1500_.jpg" alt="" loading="lazy" />
+            <span class="shop-category-copy"><small>For snack time</small><strong>Insect treats</strong></span>
+            <span class="shop-category-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="shop-category" href="#product-nano-granules">
+            <img class="shop-category-image" src="https://m.media-amazon.com/images/I/71POME8NPZL._SL1448_.jpg" alt="" loading="lazy" />
+            <span class="shop-category-copy"><small>Mealworm + BSF</small><strong>Handy multipack</strong></span>
+            <span class="shop-category-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="shop-category" href="#product-shrimp-delight">
+            <img class="shop-category-image" src="https://m.media-amazon.com/images/I/61EIKLCOBRL._SL1195_.jpg" alt="" loading="lazy" />
+            <span class="shop-category-copy"><small>For bigger fish</small><strong>Jumbo shrimp</strong></span>
+            <span class="shop-category-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="shop-category" href="#product-betta-bites">
+            <img class="shop-category-image" src="https://images.meesho.com/images/products/999591450/nzvoj_512.avif?width=512" alt="" loading="lazy" />
+            <span class="shop-category-copy"><small>A natural tank touch</small><strong>Catappa leaves</strong></span>
+            <span class="shop-category-arrow" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+        <a class="amazon-badge" href="https://www.amazon.com/s?k=zupet" target="_blank" rel="noopener sponsored" aria-label="Shop Zupet on Amazon">
+          <span class="amazon-badge-flag">Find us on</span>
           <svg class="amazon-badge-logo" viewBox="0 0 140 36" aria-hidden="true" focusable="false">
             <text x="70" y="24" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="24" letter-spacing="1" fill="#232F3E">amazon</text>
             <path d="M7 25 Q 70 35 133 25" fill="none" stroke="#FF9900" stroke-width="5" stroke-linecap="round"/>
@@ -434,8 +472,8 @@
     <section class="section products" id="products">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">The full range</p>
-          <h2 class="section-title">Every species. Every stage. One brand.</h2>
+          <p class="eyebrow">The Zupet fish food shop</p>
+          <h2 class="section-title">For every fish in your little world.</h2>
           <p class="section-lead">
             Six carefully formulated foods covering daily staples, color enhancement,
             herbivore grazing and specialist diets — all built on natural ingredients.
@@ -856,19 +894,71 @@
           </p>
         </div>
 
-        <!-- Decorative panel (CSS-only aquarium scene placeholder) -->
-        <div class="about-panel reveal" style="--d:.1s" aria-hidden="true">
-          <div class="about-panel-bubbles">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <svg class="about-panel-fish" viewBox="0 0 120 80">
-            <path d="M16 40c0-17 14-23 36-23 20 0 35 9 43 23-8 14-23 23-43 23-22 0-36-6-36-23z" fill="rgba(255,255,255,.16)" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
-            <path d="M66 40h18M90 26l12 14-12 14" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="34" cy="33" r="3" fill="#fff"/>
-          </svg>
-          <p class="about-panel-note">No stock photos — just clean CSS gradients and a little imagination.</p>
+        <figure class="about-panel reveal" style="--d:.1s">
+          <img
+            class="about-panel-image"
+            src="img/Gemini_Generated_Image_pwt8ckpwt8ckpwt8.png"
+            alt="Zupet aquarium care products displayed in a planted aquarium"
+            width="1200"
+            height="896"
+            loading="lazy" />
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FROM THE BLOG
+         ============================================================ -->
+    <section class="section home-blog" id="home-blog">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">From the blog</p>
+          <h2 class="section-title">A little more for your aquarium</h2>
+          <p class="section-lead">Helpful guides and fresh ideas for happier, healthier fish.</p>
         </div>
 
+        <div class="home-blog-grid">
+          <article class="home-blog-card reveal">
+            <a class="home-blog-image" href="articles/almond-leaves-in-gurgaon-gurugram-buy-and-how-to-use-zupet.html">
+              <img src="img/blog/gemini_generated_image_vovykkvovykkvovy.png" alt="Indian almond leaves for an aquarium" loading="lazy" />
+            </a>
+            <h3 class="home-blog-title">
+              <a href="articles/almond-leaves-in-gurgaon-gurugram-buy-and-how-to-use-zupet.html">Almond Leaves in Gurgaon: Buy &amp; How to Use</a>
+            </h3>
+          </article>
+
+          <article class="home-blog-card reveal" style="--d:.06s">
+            <a class="home-blog-image" href="articles/almond-leaves-in-gurgaon-gurugram-where-to-buy-and-how-to-us.html">
+              <img src="img/blog/gemini_generated_image_dnym2sdnym2sdnym.png" alt="A guide to buying and using almond leaves in Gurgaon" loading="lazy" />
+            </a>
+            <h3 class="home-blog-title">
+              <a href="articles/almond-leaves-in-gurgaon-gurugram-where-to-buy-and-how-to-us.html">Where to Buy Almond Leaves in Gurgaon</a>
+            </h3>
+          </article>
+
+          <article class="home-blog-card reveal" style="--d:.12s">
+            <a class="home-blog-image" href="articles/mealworms-vs-black-soldier-fly-larvae-which-is-better-for-aq.html">
+              <img src="img/blog/gemini_generated_image_2lkow22lkow22lko.png" alt="Mealworms and black soldier fly larvae for aquarium fish" loading="lazy" />
+            </a>
+            <h3 class="home-blog-title">
+              <a href="articles/mealworms-vs-black-soldier-fly-larvae-which-is-better-for-aq.html">Mealworms vs. Black Soldier Fly Larvae</a>
+            </h3>
+          </article>
+
+          <article class="home-blog-card reveal" style="--d:.18s">
+            <a class="home-blog-image" href="blog.html">
+              <img src="img/blog/gemini_generated_image_vnpm2vvnpm2vvnpm-1.png" alt="A bowl of dried mealworms, a natural fish treat" loading="lazy" />
+            </a>
+            <h3 class="home-blog-title">
+              <a href="blog.html">More Aquarium Care Tips</a>
+            </h3>
+          </article>
+        </div>
+
+        <div class="home-blog-action reveal">
+          <a class="btn btn-ghost" href="blog.html">Explore all articles <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </section>
 
