@@ -73,6 +73,13 @@
         caption: 'A natural touch for your tank',
         alt: 'Zupet Natural Dried Catappa Almond Leaves for Aquarium',
         href: '#product-betta-bites'
+      },
+      {
+        image: 'https://m.media-amazon.com/images/I/61lzI7INbmL._SL1195_.jpg',
+        name: 'Catappa leaves 15pc',
+        caption: 'Small-size natural dried leaves',
+        alt: 'Dry Almond Leaves 15pc Small Size 6 inches Natural Dried Catappa for Aquarium',
+        href: '#product-almond-leaves-15pc'
       }
     ];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
